@@ -141,9 +141,11 @@
   <ItemGroup>
     <ClCompile Include="Date\Date.cpp" />
     <ClCompile Include="ics0025-first.cpp" />
+    <ClCompile Include="Item\Item.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Date\Date.h" />
+    <ClInclude Include="Item\Item.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
