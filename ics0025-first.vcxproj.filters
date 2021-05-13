@@ -18,5 +18,13 @@
     <ClCompile Include="ics0025-first.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Date\Date.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Date\Date.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
