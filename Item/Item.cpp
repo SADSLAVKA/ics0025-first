@@ -20,6 +20,7 @@ std::vector<std::string> Item::names = {
 				names.push_back(std::move(str));
 			}
 		}
+		birdsFile.close();
 		return names;
 	}() 
 };

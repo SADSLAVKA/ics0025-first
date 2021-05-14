@@ -32,14 +32,15 @@ void Data::PrintAll() {
 	{
 		std::cout << group.first << ":\n";
 		for (auto subgroup : *group.second) {
-			std::cout << subgroup.first << ":";
 			for (auto item : *subgroup.second) {
-				//char* date = item->getTimestamp().ToString();
-				std::cout << item->getName() << ";\n  ";
-				//delete date;
+				Date &&date = item->getTimestamp();
+				std::cout << subgroup.first << ": " << item->getName() << " " << date.GetDay()
+					<< " " << date.GetMonth() << " " << date.GetYear() << "\n";
 			}
 		}
+		std::cout << "\n";
 	}
+	std::cout << std::endl;
 }
 
 Item* Data::InsertItem(Item *new_item) {
