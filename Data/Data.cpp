@@ -43,6 +43,19 @@ void Data::PrintAll() {
 	std::cout << std::endl;
 }
 
+int Data::CountItems() {
+	int count = 0;
+	for (auto group : DataStructure)
+	{
+		for (auto subgroup : *group.second) {
+			for (auto item : *subgroup.second) {
+				count++;
+			}
+		}
+	}
+	return count;
+}
+
 Item* Data::InsertItem(Item *new_item) {
 	char&& c = new_item->getGroup();
 	int&& i = new_item->getSubgroup();

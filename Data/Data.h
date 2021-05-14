@@ -13,6 +13,7 @@ public:
 	Data(int n);
 	~Data();
 	void PrintAll();
+	int CountItems();
 	Item* InsertItem(Item* new_item);
 	Item *InsertItem(char c, int i, std::string s, Date d);
 };
