@@ -14,8 +14,9 @@ int main()
     try {
         data.PrintGroup('a');
     }
-    catch (std::invalid_argument& e) {
+    catch (...) {
 
     }
+    cout << data.CountGroupItems('a') << endl;
     return 0;
 }

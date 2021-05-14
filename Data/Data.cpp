@@ -83,6 +83,22 @@ void Data::PrintGroup(char c) {
 	std::cout << std::endl;
 }
 
+int Data::CountGroupItems(char c) {
+	c ^= ' ';
+	int count = 0;
+	auto group_iter = DataStructure.find(c);
+	if (group_iter == DataStructure.end())
+	{
+		return 0;
+	}
+	for (auto subgroup : *group_iter->second) {
+		for (auto item : *subgroup.second) {
+			count++;
+		}
+	}
+	return count;
+}
+
 Item* Data::InsertItem(Item *new_item) {
 	char&& c = new_item->getGroup();
 	int&& i = new_item->getSubgroup();
