@@ -18,5 +18,6 @@ int main()
 
     }
     cout << data.CountGroupItems('a') << endl;
+    cout << data.GetSubgroup('a', 9) << endl;
     return 0;
 }

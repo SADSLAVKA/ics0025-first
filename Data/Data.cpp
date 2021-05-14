@@ -57,6 +57,7 @@ int Data::CountItems() {
 }
 
 std::map<int, std::list<Item*>*>* Data::GetGroup(char c) {
+	c ^= ' ';
 	auto group_iter = DataStructure.find(c);
 	if (group_iter == DataStructure.end())
 	{
@@ -97,6 +98,24 @@ int Data::CountGroupItems(char c) {
 		}
 	}
 	return count;
+}
+
+std::list<Item*>* Data::GetSubgroup(char c, int i) {
+	if (i < 0 || i > 99)
+	{
+		return nullptr;
+	}
+	auto group = GetGroup(c);
+	if (!group)
+	{
+		return nullptr;
+	}
+	auto subgroup_iter = group->find(i);
+	if (subgroup_iter == group->end())
+	{
+		return nullptr;
+	}
+	return subgroup_iter->second;
 }
 
 Item* Data::InsertItem(Item *new_item) {
