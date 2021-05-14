@@ -11,5 +11,11 @@ int main()
     Item *ptr_item = data.InsertItem('A', 13, "Glados", Date::CreateRandomDate(Date{ 1, 1, 2021 }, Date{ 1, 1, 2022 }));
     data.PrintAll();
     cout << data.CountItems() << endl;
+    try {
+        data.PrintGroup('a');
+    }
+    catch (std::invalid_argument& e) {
+
+    }
     return 0;
 }

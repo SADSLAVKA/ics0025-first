@@ -56,6 +56,33 @@ int Data::CountItems() {
 	return count;
 }
 
+std::map<int, std::list<Item*>*>* Data::GetGroup(char c) {
+	auto group_iter = DataStructure.find(c);
+	if (group_iter == DataStructure.end())
+	{
+		return nullptr;
+	}
+	return group_iter->second;
+}
+
+void Data::PrintGroup(char c) {
+	c ^= ' ';
+	auto group_iter = DataStructure.find(c);
+	if (group_iter == DataStructure.end())
+	{
+		throw std::invalid_argument("Group doesn't exist!");
+	}
+	std::cout << group_iter->first << ":\n";
+	for (auto subgroup : *group_iter->second) {
+		for (auto item : *subgroup.second) {
+			Date&& date = item->getTimestamp();
+			std::cout << subgroup.first << ": " << item->getName() << " " << date.GetDay()
+				<< " " << date.GetMonth() << " " << date.GetYear() << "\n";
+		}
+	}
+	std::cout << std::endl;
+}
+
 Item* Data::InsertItem(Item *new_item) {
 	char&& c = new_item->getGroup();
 	int&& i = new_item->getSubgroup();

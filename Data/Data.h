@@ -14,6 +14,8 @@ public:
 	~Data();
 	void PrintAll();
 	int CountItems();
+	std::map<int, std::list<Item*>*>* GetGroup(char c);
+	void PrintGroup(char c);
 	Item* InsertItem(Item* new_item);
 	Item *InsertItem(char c, int i, std::string s, Date d);
 };
