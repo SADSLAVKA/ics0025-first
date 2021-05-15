@@ -25,4 +25,5 @@ public:
 	void PrintItem(char c, int i, std::string s);
 	Item* InsertItem(Item* new_item);
 	Item *InsertItem(char c, int i, std::string s, Date d);
+	std::list<Item*>* InsertSubgroup(char c, int i, std::initializer_list<Item*> items);
 };

@@ -16,7 +16,7 @@ int main()
     catch (...) {
 
     }
-    cout << data.CountGroupItems('a') << endl;
+    cout << "Count of group 'A': " << data.CountGroupItems('A') << endl;
     cout << "Printing subgroup by names: \n";
     data.PrintSubgroupByNames('a', 10);
     cout << "Printing subgroup by dates: \n";

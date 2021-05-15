@@ -57,7 +57,7 @@ int Data::CountItems() {
 }
 
 std::map<int, std::list<Item*>*>* Data::GetGroup(char c) {
-	c ^= ' ';
+	c &= ~' ';
 	auto group_iter = DataStructure.find(c);
 	if (group_iter == DataStructure.end())
 	{
@@ -67,7 +67,7 @@ std::map<int, std::list<Item*>*>* Data::GetGroup(char c) {
 }
 
 void Data::PrintGroup(char c) {
-	c ^= ' ';
+	c &= ~' ';
 	auto group_iter = DataStructure.find(c);
 	if (group_iter == DataStructure.end())
 	{
@@ -85,7 +85,7 @@ void Data::PrintGroup(char c) {
 }
 
 int Data::CountGroupItems(char c) {
-	c ^= ' ';
+	c &= ~' ';
 	int count = 0;
 	auto group_iter = DataStructure.find(c);
 	if (group_iter == DataStructure.end())
@@ -160,6 +160,10 @@ int Data::CountSubgroupItems(char c, int i) {
 }
 
 Item* Data::GetItem(char c, int i, std::string s) {
+	if (s.empty())
+	{
+		return nullptr;
+	}
 	std::list<Item*>* p_subgroup = GetSubgroup(c, i);
 	if (!p_subgroup)
 	{
@@ -224,4 +228,13 @@ Item* Data::InsertItem(Item *new_item) {
 
 Item* Data::InsertItem(char c, int i, std::string s, Date d) {
 	return InsertItem(new Item(c, i, s, d));
+}
+
+std::list<Item*>* Data::InsertSubgroup(char c, int i, std::initializer_list<Item*> items) {
+	c &= ~' ';
+	if (c < 'A' || c > 'Z')
+	{
+
+	}
+	return nullptr;
 }
