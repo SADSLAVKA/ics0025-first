@@ -232,9 +232,21 @@ Item* Data::InsertItem(char c, int i, std::string s, Date d) {
 
 std::list<Item*>* Data::InsertSubgroup(char c, int i, std::initializer_list<Item*> items) {
 	c &= ~' ';
-	if (c < 'A' || c > 'Z')
+	if (c < 'A' || c > 'Z' || i < 0 || i > 99 || items.size() == 0)
 	{
-
+		return nullptr;
 	}
-	return nullptr;
+	auto group_iter = DataStructure.find(c);
+	if (group_iter == DataStructure.end())
+	{
+		group_iter = DataStructure.insert(std::make_pair(c, new std::map<int, std::list<Item*>*>)).first;
+	}
+	auto subgroup_iter = group_iter->second->find(i);
+	if (subgroup_iter != group_iter->second->end())
+	{
+		return nullptr;
+	}
+	std::list<Item*>* p_subgroup = new std::list<Item*>( items );
+	group_iter->second->insert(std::make_pair(i, p_subgroup));
+	return p_subgroup;
 }
