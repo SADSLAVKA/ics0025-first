@@ -150,6 +150,15 @@ void Data::PrintSubgroupByDates(char c, int i) {
 	std::cout << std::endl;
 }
 
+int Data::CountSubgroupItems(char c, int i) {
+	std::list<Item*>* p_subgroup = GetSubgroup(c, i);
+	if (!p_subgroup)
+	{
+		return 0;
+	}
+	return p_subgroup->size();
+}
+
 Item* Data::InsertItem(Item *new_item) {
 	char&& c = new_item->getGroup();
 	int&& i = new_item->getSubgroup();

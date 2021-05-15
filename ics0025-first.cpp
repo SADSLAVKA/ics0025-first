@@ -21,5 +21,6 @@ int main()
     data.PrintSubgroupByNames('a', 10);
     cout << "Printing subgroup by dates: \n";
     data.PrintSubgroupByDates('a', 10);
+    cout << "Number of items in subgroup A10: " << data.CountSubgroupItems('a', 10) << "\n";
     return 0;
 }
