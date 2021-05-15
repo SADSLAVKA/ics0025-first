@@ -134,7 +134,21 @@ void Data::PrintSubgroupByNames(char c, int i) {
 	std::cout << std::endl;
 }
 
-
+void Data::PrintSubgroupByDates(char c, int i) {
+	std::list<Item*>* p_subgroup = GetSubgroup(c, i);
+	if (!p_subgroup)
+	{
+		throw std::invalid_argument("Selected subgroup doesn't exist!");
+	}
+	std::list<Item*> subgroup = *p_subgroup;
+	subgroup.sort([](const Item* a, const Item* b)->bool {return a->getTimestamp() < b->getTimestamp(); });
+	for (auto item : subgroup) {
+		Date&& date = item->getTimestamp();
+		std::cout << i << ": " << item->getName() << " " << date.GetDay()
+			<< " " << date.GetMonth() << " " << date.GetYear() << "\n";
+	}
+	std::cout << std::endl;
+}
 
 Item* Data::InsertItem(Item *new_item) {
 	char&& c = new_item->getGroup();

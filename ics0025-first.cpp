@@ -19,5 +19,7 @@ int main()
     cout << data.CountGroupItems('a') << endl;
     cout << "Printing subgroup by names: \n";
     data.PrintSubgroupByNames('a', 10);
+    cout << "Printing subgroup by dates: \n";
+    data.PrintSubgroupByDates('a', 10);
     return 0;
 }

@@ -19,6 +19,7 @@ public:
 	int CountGroupItems(char c);
 	std::list<Item*>* GetSubgroup(char c, int i);
 	void PrintSubgroupByNames(char c, int i);
+	void PrintSubgroupByDates(char c, int i);
 	Item* InsertItem(Item* new_item);
 	Item *InsertItem(char c, int i, std::string s, Date d);
 };
