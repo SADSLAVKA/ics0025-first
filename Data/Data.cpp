@@ -159,6 +159,32 @@ int Data::CountSubgroupItems(char c, int i) {
 	return p_subgroup->size();
 }
 
+Item* Data::GetItem(char c, int i, std::string s) {
+	std::list<Item*>* p_subgroup = GetSubgroup(c, i);
+	if (!p_subgroup)
+	{
+		return nullptr;
+	}
+	auto item_iter = std::find_if(p_subgroup->begin(), p_subgroup->end(),
+		[s](const Item* item)->bool { return s == item->getName(); });
+	if (item_iter != p_subgroup->end())
+	{
+		return *item_iter;
+	}
+	return nullptr;
+}
+
+void Data::PrintItem(char c, int i, std::string s) {
+	Item* item = GetItem(c, i, s);
+	if (!item)
+	{
+		throw std::invalid_argument("Item doesn't exist!");
+	}
+	Date&& date = item->getTimestamp();
+	std::cout << i << ": " << item->getName() << " " << date.GetDay()
+		<< " " << date.GetMonth() << " " << date.GetYear() << std::endl;
+}
+
 Item* Data::InsertItem(Item *new_item) {
 	char&& c = new_item->getGroup();
 	int&& i = new_item->getSubgroup();

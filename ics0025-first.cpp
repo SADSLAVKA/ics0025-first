@@ -22,5 +22,7 @@ int main()
     cout << "Printing subgroup by dates: \n";
     data.PrintSubgroupByDates('a', 10);
     cout << "Number of items in subgroup A10: " << data.CountSubgroupItems('a', 10) << "\n";
+    cout << "Attempting to find item: ";
+    data.PrintItem('a', 10, "Glados");
     return 0;
 }

@@ -21,6 +21,8 @@ public:
 	void PrintSubgroupByNames(char c, int i);
 	void PrintSubgroupByDates(char c, int i);
 	int CountSubgroupItems(char c, int i);
+	Item* GetItem(char c, int i, std::string s);
+	void PrintItem(char c, int i, std::string s);
 	Item* InsertItem(Item* new_item);
 	Item *InsertItem(char c, int i, std::string s, Date d);
 };
