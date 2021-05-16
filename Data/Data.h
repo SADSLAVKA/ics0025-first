@@ -30,4 +30,5 @@ public:
 		std::initializer_list<std::initializer_list<Item*>> items);
 	bool RemoveItem(char c, int i, std::string s);
 	bool RemoveSubgroup(char c, int i);
+	bool RemoveGroup(char c);
 };

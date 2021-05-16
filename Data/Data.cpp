@@ -347,3 +347,26 @@ bool Data::RemoveSubgroup(char c, int i) {
 	}
 	return true;
 }
+
+bool Data::RemoveGroup(char c) {
+	c &= ~' ';
+	if (c < 'A' || c > 'Z')
+	{
+		return false;
+	}
+	auto group_iter = DataStructure.find(c);
+	if (group_iter == DataStructure.end())
+	{
+		return false;
+	}
+	for (auto subgroup : *group_iter->second)
+	{
+		for (Item* item : *subgroup.second) {
+			delete item;
+		}
+		delete subgroup.second;
+	}
+	delete group_iter->second;
+	DataStructure.erase(group_iter);
+	return true;
+}

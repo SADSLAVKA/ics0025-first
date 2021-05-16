@@ -32,6 +32,7 @@ int main()
         cout << "Success" << endl;
     }
     data.RemoveSubgroup('a', 11);
+    data.RemoveGroup('c');
     data.PrintAll();
     return 0;
 }
