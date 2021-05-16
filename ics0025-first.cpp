@@ -26,5 +26,10 @@ int main()
     catch (...) {
 
     }
+    cout << "Attempting to delete item...";
+    if (data.RemoveItem('a', 11, "Glados"))
+    {
+        cout << "Success" << endl;
+    }
     return 0;
 }

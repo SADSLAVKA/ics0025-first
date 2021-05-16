@@ -194,6 +194,7 @@ Item* Data::InsertItem(Item *new_item) {
 	int&& i = new_item->getSubgroup();
 	std::string&& s = new_item->getName();
 	Date&& d = new_item->getTimestamp();
+	c &= ~' ';
 	if (c < 'A' || c > 'Z')
 	{
 		return nullptr;
@@ -227,7 +228,7 @@ Item* Data::InsertItem(Item *new_item) {
 }
 
 Item* Data::InsertItem(char c, int i, std::string s, Date d) {
-	return InsertItem(new Item(c, i, s, d));
+	return InsertItem(new Item(c & ~' ', i, s, d));
 }
 
 std::list<Item*>* Data::InsertSubgroup(char c, int i, std::initializer_list<Item*> items) {
@@ -268,3 +269,49 @@ std::map<int, std::list<Item*>*>* Data::InsertGroup(char c, std::initializer_lis
 	DataStructure.insert({ c, group });
 	return group;
 }
+
+bool Data::RemoveItem(char c, int i, std::string s) {
+	c &= ~' ';
+	if (c < 'A' || c > 'Z')
+	{
+		return false;
+	}
+	else if (i < 0 || i > 99)
+	{
+		return false;
+	}
+	else if (s.empty())
+	{
+		return false;
+	}
+	auto group_iter = DataStructure.find(c);
+	if (group_iter == DataStructure.end())
+	{
+		return false;
+	}
+	auto subgroup_iter = group_iter->second->find(i);
+	if (subgroup_iter == group_iter->second->end())
+	{
+		return false;
+	}
+	auto item_iter = std::find_if(subgroup_iter->second->begin(), subgroup_iter->second->end(),
+		[s](const Item* item)->bool { return s == item->getName(); });
+	if (item_iter == subgroup_iter->second->end())
+	{
+		return false;
+	}
+	delete* item_iter;
+	subgroup_iter->second->erase(item_iter);
+	if (subgroup_iter->second->size() == 0)
+	{
+		delete subgroup_iter->second;
+		group_iter->second->erase(subgroup_iter);
+	}
+	if (group_iter->second->size() == 0)
+	{
+		delete group_iter->second;
+		DataStructure.erase(group_iter);
+	}
+	return true;
+}
+	
