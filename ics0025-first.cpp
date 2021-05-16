@@ -120,6 +120,6 @@ int main()
     data2.RemoveGroup('b'); // group b disappears
     data2.RemoveGroup('1'); // group doesn't exist
     data2.PrintAll();
-    cout << "=====================\n";
+    cout << "=====================" << endl;
     return 0;
 }
