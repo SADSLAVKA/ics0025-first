@@ -314,4 +314,36 @@ bool Data::RemoveItem(char c, int i, std::string s) {
 	}
 	return true;
 }
-	
+
+bool Data::RemoveSubgroup(char c, int i) {
+	c &= ~' ';
+	if (c < 'A' || c > 'Z')
+	{
+		return false;
+	}
+	else if (i < 0 || i > 99)
+	{
+		return false;
+	}
+	auto group_iter = DataStructure.find(c);
+	if (group_iter == DataStructure.end())
+	{
+		return false;
+	}
+	auto subgroup_iter = group_iter->second->find(i);
+	if (subgroup_iter == group_iter->second->end())
+	{
+		return false;
+	}
+	for (auto item : *subgroup_iter->second) {
+		delete item;
+	}
+	delete subgroup_iter->second;
+	group_iter->second->erase(subgroup_iter);
+	if (group_iter->second->size() == 0)
+	{
+		delete group_iter->second;
+		DataStructure.erase(group_iter);
+	}
+	return true;
+}

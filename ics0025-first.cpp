@@ -8,7 +8,7 @@ int main()
     Data data = Data(10);
     Item *ptr_item = new Item('A', 11, "Glados", Date::CreateRandomDate(Date{ 1, 1, 2021 }, Date{ 1, 1, 2022 }));
     Item *item2 = new Item('A', 11, "Xcom", Date::CreateRandomDate(Date{ 1, 1, 2021 }, Date{ 1, 1, 2022 }));
-    data.InsertGroup('A', { 11,12 }, { {ptr_item}, {item2} });
+    data.InsertGroup('A', { 11}, { {ptr_item, item2} });
     data.PrintAll();
     cout << data.CountItems() << endl;
     try {
@@ -31,5 +31,7 @@ int main()
     {
         cout << "Success" << endl;
     }
+    data.RemoveSubgroup('a', 11);
+    data.PrintAll();
     return 0;
 }

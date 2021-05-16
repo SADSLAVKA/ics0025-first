@@ -29,4 +29,5 @@ public:
 	std::map<int, std::list<Item*>*>* InsertGroup(char c, std::initializer_list<int> subgroups, 
 		std::initializer_list<std::initializer_list<Item*>> items);
 	bool RemoveItem(char c, int i, std::string s);
+	bool RemoveSubgroup(char c, int i);
 };
