@@ -250,3 +250,21 @@ std::list<Item*>* Data::InsertSubgroup(char c, int i, std::initializer_list<Item
 	group_iter->second->insert(std::make_pair(i, p_subgroup));
 	return p_subgroup;
 }
+
+std::map<int, std::list<Item*>*>* Data::InsertGroup(char c, std::initializer_list<int> subgroups,
+	std::initializer_list<std::initializer_list<Item*>> items) {
+	c &= ~' ';
+	if (DataStructure.find(c) != DataStructure.end() || c < 'A' || c > 'Z' || subgroups.size() != items.size())
+	{
+		return nullptr;
+	}
+	auto sb = subgroups.begin();
+	auto it = items.begin();
+	size_t size = subgroups.size();
+	auto group = new std::map<int, std::list<Item*>*>;
+	for (size_t i = 0; i < size; i++, sb++, it++) {
+		group->insert({ *sb, new std::list<Item*>(*it) });
+	}
+	DataStructure.insert({ c, group });
+	return group;
+}

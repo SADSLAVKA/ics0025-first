@@ -5,14 +5,15 @@ using namespace std;
 
 int main()
 {
-    Data data = Data(400);
+    Data data = Data(10);
     Item *ptr_item = new Item('A', 11, "Glados", Date::CreateRandomDate(Date{ 1, 1, 2021 }, Date{ 1, 1, 2022 }));
     Item *item2 = new Item('A', 11, "Xcom", Date::CreateRandomDate(Date{ 1, 1, 2021 }, Date{ 1, 1, 2022 }));
+    data.InsertGroup('A', { 11,12 }, { {ptr_item}, {item2} });
     data.PrintAll();
     cout << data.CountItems() << endl;
     try {
         data.PrintGroup('a');
-        data.InsertSubgroup('a', 11, { ptr_item, item2 });
+        //data.InsertSubgroup('a', 11, { ptr_item, item2 });
         cout << "Count of group 'A': " << data.CountGroupItems('A') << endl;
         cout << "Printing subgroup by names: \n";
         data.PrintSubgroupByNames('a', 11);
